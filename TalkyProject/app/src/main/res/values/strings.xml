@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Talky_Project</string>
+    <string name="join">회원가입</string>
+    <string name="emiil">이메일</string>
+    <string name="passwd">비밀번호</string>
+    <string name="nickname">닉네임</string>
+    <string name="name">이름</string>
+    <string name="id">아이디</string>
+    <string name="passwdCheck">비밀번호 확인</string>
+    <string name="login">로그인</string>
+    <string name="logout">로그아웃</string>
+    <string name="password_reset">비밀번호 변경</string>
+    <string name="password_reset_by_email">비밀번호 변경 이메일 보내기</string>
+    <string name="phoneNumber">전화번호</string>
+    <string name="birthday">생년월일</string>
+    <string name="address">주소</string>
+    <string name="member_info">회원정보</string>
+    <string name="check">확인</string>
 </resources>

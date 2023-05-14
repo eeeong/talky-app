@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "390764094323",
+    "project_id": "talkyproject-ec952",
+    "storage_bucket": "talkyproject-ec952.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390764094323:android:b954c73e4248510eed5b06",
+        "android_client_info": {
+          "package_name": "com.example.talky_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390764094323-2lknftgo43culiocl95a0dbbh08vsmi4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH1nKaaSKrbV5HzuYBGOits8pW_kcW8Mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390764094323-2lknftgo43culiocl95a0dbbh08vsmi4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
