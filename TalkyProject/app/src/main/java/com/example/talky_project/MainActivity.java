@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity { //앱 실행시 시작화�
         }
         else { //로그인 되어있으면
             //회원가입 or 로그인
+            myStartActivity(CameraActivity.class);
+
             for (UserInfo profile : user.getProviderData()) { //사용자 프로필 정보 가져오기
                 // Name, email address, and profile photo Url
                 String name = profile.getDisplayName(); //사용자 이름
