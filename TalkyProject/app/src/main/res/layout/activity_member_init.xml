@@ -38,7 +38,7 @@
             android:inputType="text" />
 
         <EditText
-            android:id="@+id/birthdayEditTextText3"
+            android:id="@+id/birthdayEditTextText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"

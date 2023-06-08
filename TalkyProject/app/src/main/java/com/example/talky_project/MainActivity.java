@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 
-public class MainActivity extends AppCompatActivity { //앱 실행시 시작화면
+public class MainActivity extends BasicActivity { //앱 실행시 시작화면
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity { //앱 실행시 시작화�
         }
         else { //로그인 되어있으면
             //회원가입 or 로그인
-            myStartActivity(CameraActivity.class);
+            //myStartActivity(CameraActivity.class);
 
             for (UserInfo profile : user.getProviderData()) { //사용자 프로필 정보 가져오기
                 // Name, email address, and profile photo Url
@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity { //앱 실행시 시작화�
 
         //로그인 되어있을 때 메인화면
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener); //로그아웃 버튼
+        findViewById(R.id.writingButton).setOnClickListener(onClickListener); //글 쓰기 버튼
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -47,6 +48,10 @@ public class MainActivity extends AppCompatActivity { //앱 실행시 시작화�
             if (v.getId() == R.id.logoutButton) { //로그아웃 버튼 눌렸을 때
                 FirebaseAuth.getInstance().signOut(); //로그아웃
                 myStartActivity(JoinActivity.class);
+
+            }
+            else if (v.getId() == R.id.writingButton) { //로그아웃 버튼 눌렸을 때
+                myStartActivity(WritingPostActivity.class); //회원가입 화면으로
 
             }
         }

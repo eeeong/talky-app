@@ -41,4 +41,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-storage' //저장소 종속성
+    implementation 'com.google.firebase:firebase-firestore:24.6.1' //데이터 업로드 위한 종속성
 }

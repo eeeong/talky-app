@@ -15,7 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class JoinActivity extends AppCompatActivity {
+public class JoinActivity extends BasicActivity {
     //파이어베이스 인증 SDK 사용하기
     private FirebaseAuth mAuth; //파이어베이스 인스턴스 생성
 

@@ -18,4 +18,8 @@
     <string name="address">주소</string>
     <string name="member_info">회원정보</string>
     <string name="check">확인</string>
+    <string name="writing">글쓰기</string>
+    <string name="title">제목</string>
+    <string name="please_writing">내용을 적어주세요.</string>
+    <string name="write">쓰기</string>
 </resources>

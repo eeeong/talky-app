@@ -38,6 +38,10 @@
         </activity>
         <activity android:name=".CameraActivity">
         </activity>
+        <activity android:name=".BasicActivity">
+        </activity>
+        <activity android:name=".WritingPostActivity">
+        </activity>
     </application>
 
 </manifest>
