@@ -1,7 +1,10 @@
 package com.example.talky_project;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,8 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-public class LoginActivity extends BasicActivity {
+public class LoginActivity extends AppCompatActivity {
     //파이어베이스 인증 SDK 사용하기
     private FirebaseAuth mAuth; //파이어베이스 인스턴스 생성
 
@@ -29,6 +35,7 @@ public class LoginActivity extends BasicActivity {
 
         findViewById(R.id.loginButton).setOnClickListener(onClickListener);
         findViewById(R.id.gotoPasswordResetbutton).setOnClickListener(onClickListener);
+        findViewById(R.id.gotoJoinButton).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -37,8 +44,11 @@ public class LoginActivity extends BasicActivity {
             if (v.getId() == R.id.loginButton) { //switch -> if !! final 선언 안 됨 문제
                 login();
             }
-            if (v.getId() == R.id.gotoPasswordResetbutton) { //
+            else if (v.getId() == R.id.gotoPasswordResetbutton) { //
                 myStartActivity(PasswordResetActivity.class);
+            }
+            else if (v.getId() == R.id.gotoJoinButton) {
+                myStartActivity(JoinActivity.class);
             }
         }
     };
@@ -55,6 +65,29 @@ public class LoginActivity extends BasicActivity {
                             if (task.isSuccessful()) { //로그인 성공
                                 startToast("로그인 성공 ><");
                                 FirebaseUser user = mAuth.getCurrentUser();
+
+                                //로그인시 회원정보 등록 안 돼 있으면 회원정보 액티비티 실행
+                                //회원정보가 이미 등록돼 있으면 메인 액티비티 실행
+                                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                                DocumentReference docRef = db.collection("users").document(user.getUid());
+                                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot document = task.getResult();
+                                            if(document != null){
+                                                if (document.exists()) {
+                                                    Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                                } else {
+                                                    Log.d(TAG, "No such document");
+                                                    myStartActivity(MemberInitActivity.class);
+                                                }
+                                            }
+                                        } else {
+                                            Log.d(TAG, "get failed with ", task.getException());
+                                        }
+                                    }
+                                });
                                 myStartActivity(MainActivity.class); //메인화면으로 이동
                             } else { //실패1
                                 if(task.getException() != null)

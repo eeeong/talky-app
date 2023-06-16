@@ -15,7 +15,8 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FAFABE">
 
     <com.example.talky_project.AutoFitTextureView
         android:id="@+id/texture"
@@ -33,7 +34,7 @@
         android:gravity="center_vertical">
 
         <Button
-            android:id="@+id/change"
+            android:id="@+id/gotoChangeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -42,7 +43,7 @@
             android:text="change" />
 
         <Button
-            android:id="@+id/picture"
+            android:id="@+id/gotoPictureButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

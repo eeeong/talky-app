@@ -68,6 +68,7 @@
 
 package com.example.talky_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 //import android.support.annotation.NonNull;
 //import android.support.v7.app.AppCompatActivity;
@@ -78,14 +79,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,7 @@ public class MemberInitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_init);
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
+        findViewById(R.id.backButton1).setOnClickListener(onClickListener);
     }
 
     @Override
@@ -104,37 +105,51 @@ public class MemberInitActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.checkButton) { //로그아웃 버튼 눌렸을 때
-                    profileUpdate();
+            if (v.getId() == R.id.checkButton) { //확인 버튼 눌렸을 때
+                profileUpdate();
+            }
+            else if (v.getId() == R.id.backButton1) { //
+                myStartActivity(MainActivity.class);
             }
         }
     };
 
     private void profileUpdate() {
-        String name = ((EditText)findViewById(R.id.nameEditText)).getText().toString();
+        String nickname = ((EditText)findViewById(R.id.nicknameEditText)).getText().toString();
         String phoneNumber = ((EditText)findViewById(R.id.phoneEditText)).getText().toString();
         String birthDay = ((EditText)findViewById(R.id.birthdayEditTextText)).getText().toString();
         String address = ((EditText)findViewById(R.id.addressEditText)).getText().toString();
 
-        if(name.length() > 0 && phoneNumber.length() > 9 && birthDay.length() > 5 && address.length() > 0){
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
-            if(user != null){
-                //                            public void onFailure(@NonNull Exception e) {
-                db.collection("users").document(user.getUid()).set(memberInfo)
-                        .addOnSuccessListener(aVoid -> {
-                            startToast("회원정보 등록을 성공하였습니다.");
-                            finish();
-                        })
-                        .addOnFailureListener(e -> {
-                            startToast("회원정보 등록에 실패하였습니다.");
-                            Log.w(TAG, "Error writing document", e);
-                        });
-            }
+        if(nickname.length() > 0 && phoneNumber.length() > 9 && birthDay.length() > 5 && address.length() > 0){
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            MemberInfo memberInfo = new MemberInfo(nickname, phoneNumber, birthDay, address);
+            uploader(memberInfo);
+
+//            if(user != null){
+//                uploader(memberInfo);
+//            }
         }else {
             startToast("회원정보를 입력해주세요.");
         }
+    }
+
+    private void uploader(MemberInfo memberInfo){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("users").document(user.getUid()).set(memberInfo)
+                .addOnSuccessListener(aVoid -> {
+                    startToast("회원정보 등록을 성공하였습니다.");
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    startToast("회원정보 등록에 실패하였습니다.");
+                    Log.w(TAG, "Error writing document", e);
+                });
+    }
+
+    private void myStartActivity(Class c) { //클래스 명으로 액티비티 전환
+        Intent intent = new Intent(this, c);
+        intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP); //플래그를 지워서 뒤로가기 했을 때 종료 (다시 메인으로 돌아오는 참사를 막기)
+        startActivity(intent);
     }
 
     private void startToast(String msg) {

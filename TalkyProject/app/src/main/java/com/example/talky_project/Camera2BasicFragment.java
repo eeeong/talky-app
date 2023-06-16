@@ -61,13 +61,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.talky_project.R;
 //import com.example.talky_project.view.AutoFitTextureView;
-import com.example.talky_project.AutoFitTextureView;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -461,8 +457,8 @@ public class Camera2BasicFragment extends Fragment
 
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
-        view.findViewById(R.id.picture).setOnClickListener(this);
-        view.findViewById(R.id.change).setOnClickListener(this);
+        view.findViewById(R.id.gotoPictureButton).setOnClickListener(this);
+        view.findViewById(R.id.gotoChangeButton).setOnClickListener(this);
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     }
 
@@ -933,9 +929,9 @@ public class Camera2BasicFragment extends Fragment
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        if (id == R.id.picture) { //Constant expression required 에러떠서 바꿔줌
+        if (id == R.id.gotoPictureButton) { //Constant expression required 에러떠서 바꿔줌
             takePicture();
-        } else if (id == R.id.change) {
+        } else if (id == R.id.gotoChangeButton) {
             //전면 카메라 경우
             if (facingId == CameraCharacteristics.LENS_FACING_FRONT) {
                 facingId = CameraCharacteristics.LENS_FACING_BACK;

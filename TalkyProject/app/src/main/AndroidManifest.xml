@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".WritingPostActivity">
         </activity>
+        <activity android:name=".SearchPostActivity">
+        </activity>
     </application>
 
 </manifest>

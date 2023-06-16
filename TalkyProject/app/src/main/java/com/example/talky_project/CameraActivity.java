@@ -23,9 +23,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.talky_project.Camera2BasicFragment;
-
-public class CameraActivity extends BasicActivity {
+public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,17 +35,19 @@ public class CameraActivity extends BasicActivity {
                     .commit();
         }
 
-        findViewById(R.id.closeButton).setOnClickListener(onClickListener);
-        //findViewById(R.id.picture).setOnClickListener(onClickListener); 이거 살려보자공
+//        findViewById(R.id.closeButton).setOnClickListener(onClickListener);
+//        findViewById(R.id.gotoPictureButton).setOnClickListener(onClickListener); //이거 살려보자공
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.closeButton) { //switch -> if !! final 선언 안 됨 문제
-                myStartActivity(MainActivity.class);
-            }
-            //else if()
+//            if (v.getId() == R.id.closeButton) { //switch -> if !! final 선언 안 됨 문제
+//                myStartActivity(MainActivity.class);
+//            }
+//            else if (v.getId() == R.id.gotoPictureButton) { //switch -> if !! final 선언 안 됨 문제
+//                myStartActivity(WritingPostActivity.class);
+//            }
         }
     };
 

@@ -2,32 +2,23 @@ package com.example.talky_project;
 
 //회원 정보 등록 정보 저장
 public class MemberInfo {
-    private String name;
+    private String nickname;
     private String phoneNumber;
     private String birthDay;
     private String address;
-    private String photoUrl;
 
-//    public MemberInfo(String name, String phoneNumber, String birthDay, String address, String photoUrl){
-//        this.name = name;
-//        this.phoneNumber = phoneNumber;
-//        this.birthDay = birthDay;
-//        this.address = address;
-//        this.photoUrl = photoUrl;
-//    }
-
-    public MemberInfo(String name, String phoneNumber, String birthDay, String address){
-        this.name = name;
+    public MemberInfo(String nickname, String phoneNumber, String birthDay, String address){
+        this.nickname = nickname;
         this.phoneNumber = phoneNumber;
         this.birthDay = birthDay;
         this.address = address;
     }
 
-    public String getName(){
-        return this.name;
+    public String getNickname(){
+        return this.nickname;
     }
-    public void setName(String name){
-        this.name = name;
+    public void setNickname(String nickname){
+        this.nickname = nickname;
     }
     public String getPhoneNumber(){
         return this.phoneNumber;
@@ -47,10 +38,5 @@ public class MemberInfo {
     public void setAddress(String address){
         this.address = address;
     }
-//    public String getPhotoUrl(){
-//        return this.photoUrl;
-//    }
-//    public void setPhotoUrl(String photoUrl){
-//        this.photoUrl = photoUrl;
-//    }
+
 }

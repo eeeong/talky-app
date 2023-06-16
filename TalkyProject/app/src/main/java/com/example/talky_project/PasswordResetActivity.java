@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class PasswordResetActivity extends BasicActivity {
+public class PasswordResetActivity extends AppCompatActivity {
     //파이어베이스 인증 SDK 사용하기
     private FirebaseAuth mAuth; //파이어베이스 인스턴스 생성
 
